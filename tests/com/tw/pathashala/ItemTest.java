@@ -60,4 +60,15 @@ public class ItemTest {
 
         assertEquals(expectedTaxValue, actualTax);
     }
+
+    @Test
+    public void testForTaxValueForItemWithOutTax() {
+        taxType = new ItemWithOutTax();
+        Item item = new Item("Chocolates", 10.0, taxType);
+
+        Double actualTax = item.tax();
+        Double expectedTaxValue = 0.0;
+
+        assertEquals(expectedTaxValue, actualTax);
+    }
 }
