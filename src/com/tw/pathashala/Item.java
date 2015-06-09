@@ -3,10 +3,12 @@ package com.tw.pathashala;
 public class Item {
     private final double value;
     private int tax;
+    private Tax taxType;
 
-    public Item(double value, int tax) {
+    public Item(double value, int tax, Tax type) {
         this.value = value;
         this.tax = tax;
+        this.taxType = type;
     }
 
     public Double tax() {
