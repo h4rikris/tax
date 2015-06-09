@@ -71,4 +71,15 @@ public class ItemTest {
 
         assertEquals(expectedTaxValue, actualTax);
     }
+
+    @Test
+    public void testForTaxValueForItemWithTax() {
+        taxType = new ItemWithTax();
+        Item item = new Item("CD", 14.99, taxType);
+
+        Double actualTax = item.tax();
+        Double expectedTaxValue = 1.5;
+
+        assertEquals(expectedTaxValue, actualTax);
+    }
 }
