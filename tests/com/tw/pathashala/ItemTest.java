@@ -1,23 +1,27 @@
 package com.tw.pathashala;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class ItemTest {
+    Tax taxType;
 
     @Test
-    public void shouldCaluculateTaxOfItemBasedOnValue() {
-        Item item = new Item(14.99, 10);
+    public void shouldCaluculateTaxOfImportedTaxableItem() {
+        taxType = new ImportedItemWithTax();
+        Item item = new Item(47.50, taxType);
 
         Double actualTax = item.tax();
 
-        assertEquals(1.5, actualTax, 0.0d);
+        assertEquals(7.15, actualTax, 0.0d);
     }
 
     @Test
     public void ShouldCaluculateTaxNearToPointZeroFivePrecision() {
-        Item item = new Item(14.99, 10);
+        taxType = new ImportedItemWithTax();
+        Item item = new Item(14.99, taxType);
 
         Double actualTax = item.tax();
         Double expectedTaxValue = 1.499;
