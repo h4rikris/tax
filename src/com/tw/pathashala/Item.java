@@ -11,6 +11,6 @@ public class Item {
 
     public Double tax() {
         double taxValue = (value * tax) / 100;
-        return Math.round(taxValue * 20.0)/20.0;
+        return Math.round(taxValue * 20.0) / 20.0;
     }
 }

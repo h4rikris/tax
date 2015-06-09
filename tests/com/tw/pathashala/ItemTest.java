@@ -14,4 +14,14 @@ public class ItemTest {
 
         assertEquals(1.5, actualTax, 0.0d);
     }
+
+    @Test
+    public void ShouldCaluculateTaxNearToPointZeroFivePrecision() {
+        Item item = new Item(14.99, 10);
+
+        Double actualTax = item.tax();
+        Double expectedTaxValue = 1.499;
+
+        assertFalse(actualTax.equals(expectedTaxValue));
+    }
 }
