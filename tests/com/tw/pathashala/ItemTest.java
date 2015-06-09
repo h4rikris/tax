@@ -11,7 +11,7 @@ public class ItemTest {
     @Test
     public void shouldCaluculateTaxOfImportedTaxableItem() {
         taxType = new ImportedItemWithTax();
-        Item item = new Item(47.50, taxType);
+        Item item = new Item("Perfume", 47.50, taxType);
 
         Double actualTax = item.tax();
 
@@ -19,13 +19,45 @@ public class ItemTest {
     }
 
     @Test
-    public void ShouldCaluculateTaxNearToPointZeroFivePrecision() {
+    public void shouldCaluculateTaxNearToPointZeroFivePrecision() {
         taxType = new ImportedItemWithTax();
-        Item item = new Item(14.99, taxType);
+        Item item = new Item("CD", 14.99, taxType);
 
         Double actualTax = item.tax();
         Double expectedTaxValue = 1.499;
 
         assertFalse(actualTax.equals(expectedTaxValue));
+    }
+
+    @Test
+    public void shouldReturnStringWithNameAndValue() {
+        taxType = new ItemWithTax();
+        Item item = new Item("CD", 14.99, taxType);
+
+        String actual = item.toString();
+
+        assertEquals("CD :16.5", actual);
+    }
+
+    @Test
+    public void testForTaxValueForImportedItemWithTax() {
+        taxType = new ImportedItemWithTax();
+        Item item = new Item("Bottle", 47.50, taxType);
+
+        Double actualTax = item.tax();
+        Double expectedTaxValue = 7.15;
+
+        assertEquals(expectedTaxValue, actualTax);
+    }
+
+    @Test
+    public void testForTaxValueForImportedItemWithOutTax() {
+        taxType = new ImportedItemWithOutTax();
+        Item item = new Item("Chocolates", 10.0, taxType);
+
+        Double actualTax = item.tax();
+        Double expectedTaxValue = 0.5;
+
+        assertEquals(expectedTaxValue, actualTax);
     }
 }
